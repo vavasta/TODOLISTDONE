@@ -8,7 +8,12 @@ function Form(props) {
         onChange={props.ChangeInput}
         value={props.value}
       />
-      <button onClick={props.Submit}>ADD</button>
+      <button
+        className="btn-floating btn-large waves-effect waves-light red"
+        onClick={props.Submit}
+      >
+        ADD
+      </button>
     </form>
   );
 }

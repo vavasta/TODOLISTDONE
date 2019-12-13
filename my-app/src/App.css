@@ -1,7 +1,39 @@
 .Form {
   margin-top: 5px;
+  color: aliceblue;
+  font-size: 25px;
 }
 
 .maindiv {
   padding-left: 20px;
+  top: 200px;
+  left: 700px;
+  /* box-sizing: border-box;
+  border: 5px solid aliceblue;
+  border-radius: 5%; */
+  font-size: 25px;
+  color: aliceblue;
+}
+
+.btns {
+   display: inline-block;
+   padding: 0.35em 1.2em;
+   border: 0.1em solid #ffffff;
+   margin: 0 0.3em 0.3em 0;
+   border-radius: 0.12em;
+   box-sizing: border-box;
+   text-decoration: none;
+   font-family: "Roboto", sans-serif;
+   font-weight: 300;
+   color: #ffffff;
+   text-align: center;
+   transition: all 0.2s;
+}
+
+body {
+  background-image: url(https://freehtmlthemes.ru/assets/images/articles/css-fon.jpg);
+}
+
+.container h1 {
+  color: aliceblue;
 }

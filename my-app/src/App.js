@@ -4,7 +4,8 @@ import List from "./components/List";
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="container">
+        <h1>TODO LIST</h1>
         <List />
       </div>
     );

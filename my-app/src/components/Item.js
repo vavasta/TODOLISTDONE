@@ -5,37 +5,45 @@ import List from "./List";
 class Item extends React.Component {
   state = {
     isOpen: false,
-    UpBtnOpen: false
+    UpBtnOpen: false,
+    sublistMessage: ""
   };
+
   //Sublist Functions
   addSublist = idToSublist => {
+    this.props.addSublist(idToSublist);
     this.setState({ isOpen: true });
+    this.changeBTNstatus();
   };
   removeSublist = idToSublist => {
+    this.props.removeSublist(idToSublist);
     this.setState({ isOpen: false });
   };
-  //   removeUpBtn = idToSublist => {
-  //     if (props.index === 0) {
-  //     }
-  //   };
+
+  changeBTNstatus = idToSublist => {};
 
   render() {
+    const idToSublist = this.props.buttonsId;
+    const filteredItems = this.props.sublistArr.filter(
+      item => item.parent == idToSublist
+    );
     return (
       <div>
-        {this.props.task.text}
+        {this.props.message}
         <Buttons
-          index={this.props.index}
+          filteredItems={filteredItems}
+          position={this.props.position}
           arr={this.props.arr}
           removeUpBtn={this.removeUpBtn}
           hasSublist={this.state.isOpen}
           addSublist={this.addSublist}
           removeSublist={this.removeSublist}
-          buttonsId={this.props.task.id}
+          buttonsId={this.props.buttonsId}
           onDelete={this.props.onDelete}
           onKeyDown={this.props.onKeyDown}
           onKeyUp={this.props.onKeyUp}
         />
-        {this.state.isOpen ? <List /> : ""}
+        {filteredItems.length ? <List listId={filteredItems[0]._id} /> : ""}
       </div>
     );
   }
