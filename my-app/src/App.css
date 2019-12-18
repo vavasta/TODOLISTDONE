@@ -32,6 +32,8 @@
 
 body {
   background-image: url(https://freehtmlthemes.ru/assets/images/articles/css-fon.jpg);
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 .container h1 {

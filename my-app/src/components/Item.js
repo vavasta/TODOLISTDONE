@@ -1,10 +1,11 @@
 import React from "react";
 import Buttons from "./Buttons";
 import List from "./List";
+import ListContainer from "../containers/listContainer";
 
 class Item extends React.Component {
   state = {
-    isOpen: false,
+    isOpen: true,
     UpBtnOpen: false,
     sublistMessage: ""
   };
@@ -12,7 +13,7 @@ class Item extends React.Component {
   //Sublist Functions
   addSublist = idToSublist => {
     this.props.addSublist(idToSublist);
-    this.setState({ isOpen: true });
+    this.setState({ isOpen: false });
     this.changeBTNstatus();
   };
   removeSublist = idToSublist => {
@@ -23,15 +24,11 @@ class Item extends React.Component {
   changeBTNstatus = idToSublist => {};
 
   render() {
-    const idToSublist = this.props.buttonsId;
-    const filteredItems = this.props.sublistArr.filter(
-      item => item.parent == idToSublist
-    );
     return (
       <div>
         {this.props.message}
         <Buttons
-          filteredItems={filteredItems}
+          filteredItems={this.props.filteredItems}
           position={this.props.position}
           arr={this.props.arr}
           removeUpBtn={this.removeUpBtn}
@@ -43,7 +40,14 @@ class Item extends React.Component {
           onKeyDown={this.props.onKeyDown}
           onKeyUp={this.props.onKeyUp}
         />
-        {filteredItems.length ? <List listId={filteredItems[0]._id} /> : ""}
+        {this.props.filteredItems.length ? (
+          <ListContainer
+            arr={this.props.arr}
+            listId={this.props.filteredItems[0]._id}
+          />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

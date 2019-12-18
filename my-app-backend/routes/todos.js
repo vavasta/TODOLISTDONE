@@ -6,14 +6,27 @@ const Items = require("../models/Items");
 
 //Get Data
 router.get("/getData", async (req, res) => {
-  const { parent = "" } = req.query;
-  const data = await Items.find({ parent });
+  // const { parent = "" } = req.query;
+  const data = await Items.find();
+
+  console.log("data", data);
   res.json({ success: true, data: data });
 });
 //Get List
 router.get("/getList", async (req, res) => {
   const data = await List.find();
-  res.json({ success: true, data: data });
+  // .then(lists => {
+  if (!data.length) {
+    List.create({ ancestors: [], parent: null }).then(list => {
+      data.push(list);
+      res.status(200).json({ success: true, data: data });
+    });
+  } else {
+    res.status(200).json({ success: true, data: data });
+  }
+  // });
+
+  // res.json({ success: true, data: data });
 });
 //Put Data
 router.post("/putData", async (req, res) => {
@@ -52,6 +65,10 @@ router.delete("/deleteData", async (req, res) => {
     if (err) return res.send(err);
     return res.json({ id });
   });
+  const allItems = await Items.find();
+  if (allItems.length < 1) {
+    await List.collection.drop();
+  }
 });
 //Move Up Key
 router.post("/moveUp", async (req, res) => {

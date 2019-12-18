@@ -1,6 +1,7 @@
 import React from "react";
 
 function Buttons(props) {
+  console.log("Buttons props", props);
   return (
     <div>
       <button
@@ -8,7 +9,7 @@ function Buttons(props) {
         onClick={() => props.onDelete(props.buttonsId)}
       >
         DELETE
-        <i class="large material-icons">delete_forever</i>
+        <i className="large material-icons">delete_forever</i>
       </button>
       {props.position > 0 && (
         <button
@@ -16,7 +17,7 @@ function Buttons(props) {
           onClick={() => props.onKeyUp(props.buttonsId)}
         >
           UP
-          <i class="large material-icons">arrow_upward</i>
+          <i className="large material-icons">arrow_upward</i>
         </button>
       )}
       {props.position !== props.arr.length - 1 && (
@@ -25,7 +26,7 @@ function Buttons(props) {
           onClick={() => props.onKeyDown(props.buttonsId)}
         >
           DOWN
-          <i class="large material-icons">arrow_downward</i>
+          <i className="large material-icons">arrow_downward</i>
         </button>
       )}
       {!props.filteredItems.length - 1 ? (
